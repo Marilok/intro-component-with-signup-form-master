@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Intro component with sign up form</title>
+</head>
+
+<body>
+  <header>
+    <h2>Learn to code by watching others</h2>
+    <h5>See how experienced developers solve problems in real-time. Watching scripted tutorials is great,
+      but understanding how developers think is invaluable.</h5>
+
+  </header>
+
+  <main>
+    <div class="promo">
+      <h4><span style="font-weight: 600;">Try it free 7 days</span> then $20/mo. thereafter</h4>
+    </div>
+    <form class="" action="index.html" method="post" novalidate>
+
+      <div class="inputDiv">
+        <input type="text" name="" placeholder="First Name" onblur="validateFirstName()">
+        <img src="./images/icon-error.svg" alt="error icon" class="icon">
+      </div>
+      <label for="firstName"></label>
+
+      <div class="inputDiv">
+        <input type="text" name="lastName" placeholder="Last Name" onblur="validateLastName()">
+        <img src="./images/icon-error.svg" alt="error icon" class="icon">
+      </div>
+      <label for="lastName"></label>
+
+
+
+      <div class="inputDiv">
+        <input type="email" name="email" placeholder="Email Address" onblur="validateEmail()">
+        <img src="./images/icon-error.svg" alt="error icon" class="icon">
+      </div>
+      <label for="email"></label>
+
+      <div class="inputDiv">
+        <input type="password" name="password" placeholder="Password" onblur="validatePassword()">
+        <img src="./images/icon-error.svg" alt="error icon" class="icon">
+      </div>
+      <label for="passworde"></label>
+
+      <button type="submit" name="submit">Claim your free trial</button>
+      <h6>By clicking the button, you are agreeing to our <a href="#">Terms and Services</a></h6>
+
+    </form>
+
+  </main>
+  <!-- <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </p>
+  </footer> -->
+</body>
+<script>
+  const button = document.getElementsByTagName('button')[0];
+
+  const firstName = document.getElementsByTagName('input')[0];
+  const firstNameDiv = document.getElementsByClassName("inputDiv")[0];
+  const firstNameLabel = document.getElementsByTagName('label')[0];
+  const firstNameIcon = document.getElementsByClassName("icon")[0];
+
+  const lastName = document.getElementsByTagName('input')[1];
+  const lastNameDiv = document.getElementsByClassName("inputDiv")[1];
+  const lastNameLabel = document.getElementsByTagName('label')[1];
+  const lastNameIcon = document.getElementsByClassName("icon")[1];
+
+  const email = document.getElementsByTagName('input')[2];
+  const emailDiv = document.getElementsByClassName("inputDiv")[2];
+  const emailLabel = document.getElementsByTagName('label')[2];
+  const emailIcon = document.getElementsByClassName("icon")[2];
+
+  const password = document.getElementsByTagName('input')[3];
+  const passwordDiv = document.getElementsByClassName("inputDiv")[3];
+  const passwordLabel = document.getElementsByTagName('label')[3];
+  const passwordIcon = document.getElementsByClassName("icon")[3];
+
+  function validateFirstName() {
+    if (firstName.value == "") {
+      firstNameDiv.classList.remove("valid")
+      firstNameDiv.classList.add("invalid")
+      firstNameLabel.innerHTML = "First name cannot be empty";
+      firstNameIcon.style.opacity = "1";
+    } else {
+      firstNameDiv.classList.remove("invalid")
+      firstNameDiv.classList.add("valid")
+      firstNameLabel.innerHTML = "";
+      firstNameIcon.style.opacity = "0";
+    }
+  }
+
+
+  function validateLastName() {
+    if (lastName.value == "") {
+      lastNameDiv.classList.remove("valid")
+      lastNameDiv.classList.add("invalid")
+      lastNameLabel.innerHTML = "Last name cannot be empty";
+      lastNameIcon.style.opacity = "1";
+    } else {
+      lastNameDiv.classList.remove("invalid")
+      lastNameDiv.classList.add("valid")
+      lastNameLabel.innerHTML = "";
+      lastNameIcon.style.opacity = "0";
+    }
+  }
+
+  function validateEmail() {
+    let emailCorrect = /(^\w.*@\w+\.\w)/.test(email.value);
+    if (!emailCorrect) {
+      emailDiv.classList.remove("valid")
+      emailDiv.classList.add("invalid")
+      emailIcon.style.opacity = "1";
+      if (email.value.lenght == 0) {
+        emailLabel.innerHTML = "Email cannot be empty";
+      } else {
+        emailLabel.innerHTML = "Looks like this is not an email";
+      }
+    } else {
+      emailDiv.classList.remove("invalid")
+      emailDiv.classList.add("valid")
+      emailLabel.innerHTML = "";
+      emailIcon.style.opacity = "0";
+    }
+  }
+
+  function validatePassword() {
+    let passwordCorrect = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password.value);
+    if (!passwordCorrect) {
+      passwordIcon.style.opacity = "1";
+      passwordDiv.classList.remove("valid")
+      passwordDiv.classList.add("invalid");
+      passwordLabel.innerHTML = "Password must include atleast 8 characters and 1 number";
+      if (password.value == '') {
+        passwordLabel.innerHTML = "Password cannot be empty";
+      }
+    } else {
+      passwordIcon.style.opacity = "0";
+      passwordDiv.classList.remove("invalid")
+      passwordDiv.classList.add("valid")
+      passwordLabel.innerHTML = "";
+    }
+  }
+
+  function validate() {
+    validateFirstName();
+    validateLastName();
+    validateEmail();
+    validatePassword();
+  }
+  button.addEventListener("click", event => {
+    event.preventDefault();
+    validate();
+  });
+</script>
+
+</html>
